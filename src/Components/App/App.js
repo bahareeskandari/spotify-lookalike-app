@@ -3,27 +3,47 @@ import './App.css'
 import SearchBar from '../SearchBar/SearchBar'
 import SearchResults from '../SearchResults/SearchResults'
 import Playlist from '../Playlist/Playlist'
+import Spotify from '../util/Spotify'
 
 function App() {
   const [searchResults, setSearchResults] = useState({
-    results: [
-      {name: 'Ride', artist: 'Lana Del Ray', album: 'Summertime', id: 1},
-      {name: 'Thriller', artist: 'MJ', album: 'Billie Jean', id: 2},
-    ],
-    playlistName: 'playlistname',
-    playlistTracks: [
-      {name: 'One Day', artist: 'Asaf Avidan', album: 'Reckoning', id: 3},
-      {name: 'Jolene', artist: 'Dolly Parton', album: 'Jolene', id: 4},
-    ],
+    results: [],
+    playlistName: 'My Playlist',
+    playlistTracks: [],
   })
 
   const addTrack = (track) => {
     //if track exits in playlist do nothing, otherwise add track to playlist
     if (searchResults.playlistTracks.find((savedTrack) => savedTrack.id === track.id)) {
-      console.log('not working')
       return
     }
-    setSearchResults({...searchResults, playlistTracks: track})
+    setSearchResults({...searchResults, playlistTracks: [...searchResults.playlistTracks, track]})
+  }
+
+  const removeTrack = (track) => {
+    setSearchResults({
+      ...searchResults,
+      playlistTracks: searchResults.playlistTracks.filter((savedTrack) => savedTrack !== track),
+    })
+  }
+
+  const updatePlaylistName = (name) => {
+    setSearchResults({...searchResults, playlistName: name})
+  }
+
+  const savePlaylist = () => {
+    console.log('hshhshs')
+    const trackUris = searchResults.playlistTracks.map((track) => track.uri)
+    Spotify.savePlayList(searchResults.playlistName, trackUris).then(() => {
+      setSearchResults({...searchResults})
+    })
+  }
+
+  const search = (term) => {
+    console.log(term)
+    Spotify.search(term).then((searchResults) => {
+      setSearchResults({...searchResults, results: searchResults})
+    })
   }
 
   return (
@@ -32,12 +52,15 @@ function App() {
         Ja<span className="highlight">mmm</span>ing
       </h1>
       <div className="App">
-        {/* <SearchBar /> */}
+        <SearchBar onSearch={search} />
         <div className="App-playlist">
           <SearchResults onAdd={addTrack} searchResults={searchResults.results} />
           <Playlist
+            onNameChange={updatePlaylistName}
+            onRemove={removeTrack}
             playlistName={searchResults.playlistName}
             playlistTracks={searchResults.playlistTracks}
+            onSave={savePlaylist}
           />
         </div>
       </div>

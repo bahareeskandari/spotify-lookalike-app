@@ -2,11 +2,17 @@ import React from 'react'
 import './TrackList.css'
 import Track from '../Track/Track'
 
-const TrackList = ({tracks, onAdd, isRemoval}) => {
+const TrackList = ({tracks, onAdd, onRemove, isRemoval}) => {
   return (
     <div>
       {tracks.map((track) => (
-        <Track isRemoval={isRemoval} onAdd={onAdd} key={track.id} track={track} />
+        <Track
+          onRemove={onRemove}
+          isRemoval={isRemoval}
+          onAdd={onAdd}
+          key={track.id}
+          track={track}
+        />
       ))}
       <div className="TrackList"></div>
     </div>
