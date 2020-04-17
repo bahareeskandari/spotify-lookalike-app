@@ -40,9 +40,8 @@ function App() {
   }
 
   const search = (term) => {
-    console.log(term)
-    Spotify.search(term).then((searchResults) => {
-      setSearchResults({...searchResults, results: searchResults})
+    Spotify.search(term).then((searchResultss) => {
+      setSearchResults({...searchResults, results: searchResultss})
     })
   }
 
