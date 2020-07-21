@@ -35,7 +35,7 @@ function App() {
     console.log('hshhshs')
     const trackUris = searchResults.playlistTracks.map((track) => track.uri)
     Spotify.savePlayList(searchResults.playlistName, trackUris).then(() => {
-      setSearchResults({...searchResults})
+      setSearchResults({...searchResults, playlistName: 'New Playlist', playlistTracks: []})
     })
   }
 
