@@ -1,6 +1,23 @@
-const clientId = '6c6602a6de334a3da72893924b673154'
-const redirectUri = 'http://localhost:3000/'
-let accessToken
+ const clientId = '6c6602a6de334a3da72893924b673154'
+ const redirectUri = 'http://localhost:3000/'
+ let accessToken
+
+// const clientId
+// const redirectUri
+//  let accessToken
+// require('es6-promise').polyfill()
+// require('isomorphic-fetch')
+let Keys
+
+ if (process.env.NODE_ENV === 'production') {
+   Keys = process.env
+ } else {
+   Keys = require('../util/Keys.json')
+   //clientId = Keys.clientId
+   //redirectUri = 'http://localhost:3000/'
+   console.log('accessToken',Keys, accessToken)
+   console.log('redirectURI', redirectUri )
+ }
 
 const Spotify = {
   getAccessToken() {
