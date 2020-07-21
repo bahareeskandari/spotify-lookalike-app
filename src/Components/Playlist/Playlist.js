@@ -10,7 +10,7 @@ const Playlist = ({playlistName, onSave, onRemove, onNameChange, onAdd, playlist
       <input defaultValue={playlistName} onChange={(e) => onNameChange(e.target.value)} />
       <TrackList onRemove={onRemove} isRemoval={true} onAdd={onAdd} tracks={playlistTracks} />
       <button className="Playlist-save" onClick={() => onSave()}>
-        SAVE TO SPOTIFY
+        SAVE TO YOUR LIST
       </button>
     </div>
   )

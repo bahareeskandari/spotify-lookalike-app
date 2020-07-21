@@ -48,7 +48,7 @@ function App() {
   return (
     <div>
       <h1>
-        Ja<span className="highlight">mmm</span>ing
+        Bahares<span className="highlight">Spotify</span>Look<span className="highlight">Alike</span>App
       </h1>
       <div className="App">
         <SearchBar onSearch={search} />

@@ -10,7 +10,7 @@ html {
 
 h1 {
   padding: 0.77rem 0;
-  background-color: #010c3f;
+  background-color: #cf6990;
   text-align: center;
   font-family: 'Poppins', sans-serif;
   font-size: 1.88rem;
@@ -29,7 +29,7 @@ h2 {
 .App {
   height: 100%;
   padding: 0 17% 10% 17%;
-  background-image: url('https://s3.amazonaws.com/codecademy-content/programs/react/jammming/background_photo_desktop.jpg');
+  background-image: url('https://scx1.b-cdn.net/csz/news/800/2016/578650fe544c4.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
